@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 187 75% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 47% 14%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 60%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 14%;
+    --ring: 187 75% 50%;
+
+    --radius: 0.5rem;
+
+    /* Severity colors */
+    --severity-low: 142 76% 45%;
+    --severity-medium: 45 93% 47%;
+    --severity-high: 25 95% 53%;
+    --severity-critical: 0 84% 60%;
+
+    /* SOC specific */
+    --glow-primary: 0 0 20px hsl(187 75% 50% / 0.3);
+    --glow-accent: 0 0 20px hsl(217 91% 60% / 0.3);
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 187 75% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 47% 12%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 30% 15%;
+    --sidebar-ring: 187 75% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .soc-card {
+    @apply bg-card border border-border rounded-lg p-4 transition-all duration-200;
+    @apply hover:border-primary/30;
+  }
+
+  .soc-input {
+    @apply bg-input border border-border rounded-lg px-4 py-3 w-full;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+    @apply placeholder:text-muted-foreground transition-all duration-200;
+  }
+
+  .severity-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .severity-low {
+    @apply bg-[hsl(var(--severity-low)/0.15)] text-[hsl(var(--severity-low))] border border-[hsl(var(--severity-low)/0.3)];
+  }
+
+  .severity-medium {
+    @apply bg-[hsl(var(--severity-medium)/0.15)] text-[hsl(var(--severity-medium))] border border-[hsl(var(--severity-medium)/0.3)];
+  }
+
+  .severity-high {
+    @apply bg-[hsl(var(--severity-high)/0.15)] text-[hsl(var(--severity-high))] border border-[hsl(var(--severity-high)/0.3)];
+  }
+
+  .severity-critical {
+    @apply bg-[hsl(var(--severity-critical)/0.15)] text-[hsl(var(--severity-critical))] border border-[hsl(var(--severity-critical)/0.3)];
+    animation: pulse-critical 2s ease-in-out infinite;
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+}
+
+@layer utilities {
+  .scrollbar-soc {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  .scrollbar-soc::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-soc::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-soc::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+}
+
+@keyframes pulse-critical {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+}
