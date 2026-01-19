@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from schemas.incident import IncidentInput
@@ -13,6 +14,7 @@ from utils.wazuh import push_to_wazuh
 from utils.pdf_report import generate_pdf
 
 app = FastAPI(title="SOC AI Incident Response API")
+load_dotenv()
 
 # 🔥 CORS FIX (THIS IS THE KEY)
 app.add_middleware(
