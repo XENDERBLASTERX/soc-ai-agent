@@ -5,3 +5,4 @@ pydantic-ai
 python-dotenv
 httpx
 loguru
+fpdf
