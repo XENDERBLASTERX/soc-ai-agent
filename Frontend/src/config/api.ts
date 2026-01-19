@@ -1,4 +1,12 @@
-export const API_BASE_URL = "https://soc-ai-agent.onrender.com";
+// src/config/api.ts
+
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!API_BASE_URL) {
+  throw new Error(
+    "VITE_API_BASE_URL is not defined. Check your .env or Vercel env settings."
+  );
+}
 
 export const API_ENDPOINTS = {
   analyze: `${API_BASE_URL}/analyze`,
